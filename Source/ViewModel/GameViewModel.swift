@@ -36,7 +36,11 @@ struct GameViewModel {
 	var playerTurn = Player.playerOne
 	
 	#warning("Refactor")
-	var flattenedBoard: [Game.Piece] {
+	var board: [[Game.Piece]] {
+		return game.board
+	}
+	
+	var flatBoard: [Game.Piece] {
 		return game.board.flatMap { $0 }
 	}
 	

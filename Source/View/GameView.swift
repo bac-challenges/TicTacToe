@@ -43,14 +43,10 @@ class GameView: UIView {
 		return label
 	}()
 	
-	private lazy var container: GameBoard = {
-		let container = GameBoard()
-		return container
-	}()
-
 	private var buttons: [UIButton] {
 		return []
 	}
+	private lazy var container = GameBoard()
 	
 	// Init
 	override init(frame: CGRect) {
@@ -76,16 +72,10 @@ extension GameView {
 	public func update(_ model: GameViewModel) {
 		instructionsLabel.text = "\(model.playerTurn.piece.rawValue) to go"
 		
-		for (index, button) in buttons.enumerated() {
-			let value = model.flattenedBoard[index]
-			button.setTitle(value.rawValue, for: .normal)
-		}
-	}
-	
-	private func setButtonTitle() {
-		buttons.forEach { button in
-			button.setTitle("", for: .normal)
-		}
+//		for (index, button) in buttons.enumerated() {
+//			let value = model.flattenedBoard[index]
+//			button.setTitle(value.rawValue, for: .normal)
+//		}
 	}
 }
 
