@@ -38,16 +38,15 @@ protocol GameViewDelegate: class {
 // MARK: -
 class GameView: UIView {
 
-	// Delegate
+	// Public
 	public weak var delegate: GameViewDelegate?
-	
-	// Elements map
 	public var elements: [[Game.Piece]]? {
 		didSet {
 			setupView()
 		}
 	}
 	
+	// Private
 	private lazy var instructionsLabel: UILabel = {
 		let label = UILabel()
 		label.numberOfLines = 0
@@ -58,7 +57,6 @@ class GameView: UIView {
 	}()
 	
 	private lazy var container = UIStackView()
-	
 	private lazy var buttons: [UIButton] = []
 	
 	// Init
@@ -73,7 +71,7 @@ class GameView: UIView {
 	}
 }
 
-// MARK: -
+// MARK: - Game State Controls
 extension GameView {
 	
 	/// Reset
@@ -88,15 +86,6 @@ extension GameView {
 		for (index, button) in buttons.enumerated() {
 			let value = model.flatBoard[index]
 			button.setTitle(value.rawValue, for: .normal)
-		}
-	}
-}
-
-// MARK: - Actions
-extension GameView {
-	@objc func squarePressed(sender: UIButton) {
-		if let delegate = delegate {
-			delegate.squarePressed(square: sender)
 		}
 	}
 }
@@ -140,8 +129,6 @@ extension GameView {
 					button.setTitleColor(.lightGray, for: .normal)
 					button.titleLabel?.font = .systemFont(ofSize: 60, weight: .light)
 					button.backgroundColor = .groupTableViewBackground
-					button.layer.borderColor = UIColor.lightGray.cgColor
-					button.layer.borderWidth = 1
 					button.layer.cornerRadius = 6
 					button.anchor(width: 80, height: 80)
 					button.addTarget(self, action: #selector(squarePressed), for: .touchUpInside)
@@ -169,5 +156,14 @@ extension GameView {
 		instructionsLabel.anchor(bottom: container.topAnchor, paddingBottom: 20,
 								 left: container.leftAnchor,
 								 right: container.rightAnchor)
+	}
+}
+
+// MARK: - Actions
+extension GameView {
+	@objc func squarePressed(sender: UIButton) {
+		if let delegate = delegate {
+			delegate.squarePressed(square: sender)
+		}
 	}
 }

@@ -33,7 +33,10 @@ import UIKit
 
 class GameViewController: UIViewController {
 
+	// Game View Model
 	private lazy var model = GameViewModel()
+	
+	// Game UI
 	private lazy var gameView: GameView = {
 		let view = GameView()
 		view.elements = model.board
