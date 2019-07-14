@@ -50,21 +50,21 @@ let mockGameOneSpaceLeft = Game.init(board: [
     [.x, .x, .empty]
     ])
 
-func mockModelEmptyBoard(for player: Player = .playerOne) -> GameBoardViewModel {
-    return GameBoardViewModel(game: mockGameEmptyBoard, playerTurn: player)
+func mockModelEmptyBoard(for player: Player = .playerOne) -> GameViewModel {
+    return GameViewModel(game: mockGameEmptyBoard, playerTurn: player)
 }
 
-func mockModelFullBoard(for player: Player = .playerOne) -> GameBoardViewModel {
-    return GameBoardViewModel(game: mockGameFullBoard, playerTurn: .playerTwo)
+func mockModelFullBoard(for player: Player = .playerOne) -> GameViewModel {
+    return GameViewModel(game: mockGameFullBoard, playerTurn: .playerTwo)
 }
 
-func mockModelOneSpaceLeft(for player: Player = .playerOne) -> GameBoardViewModel {
-    return GameBoardViewModel(game: mockGameOneSpaceLeft, playerTurn: .playerOne)
+func mockModelOneSpaceLeft(for player: Player = .playerOne) -> GameViewModel {
+    return GameViewModel(game: mockGameOneSpaceLeft, playerTurn: .playerOne)
 }
 
-func board(using model: GameBoardViewModel,
+func board(using model: GameViewModel,
                   playerMove: Game.Piece,
-                  coords: [Coordinates]) -> GameBoardViewModel {
+                  coords: [Coordinates]) -> GameViewModel {
     var mutModel = model
     _ = mutModel.process(move: playerMove, coordinates: coords[0])
     _ = mutModel.process(move: playerMove, coordinates: coords[1])

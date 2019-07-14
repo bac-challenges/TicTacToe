@@ -33,9 +33,9 @@ import Foundation
 
 enum Result {
 	case illegalMove
-	case moveMade(GameBoardViewModel)
-	case draw(GameBoardViewModel)
-	case playerWin(GameBoardViewModel)
+	case moveMade(GameViewModel)
+	case draw(GameViewModel)
+	case playerWin(GameViewModel)
 }
 
 enum Player: String {
@@ -57,7 +57,7 @@ enum Player: String {
 	}
 }
 
-struct GameBoardViewModel {
+struct GameViewModel {
 	var game: Game = Game()
 	var playerTurn = Player.playerOne
 	
@@ -65,25 +65,25 @@ struct GameBoardViewModel {
 		return game.board.flatMap { $0 }
 	}
 	
-	static var reset: GameBoardViewModel {
-		return GameBoardViewModel(game: .init(), playerTurn: .playerOne)
+	static var reset: GameViewModel {
+		return GameViewModel(game: .init(), playerTurn: .playerOne)
 	}
 	
-	mutating func update(with coords: Coordinates) -> GameBoardViewModel {
+	mutating func update(with coords: Coordinates) -> GameViewModel {
 		let board = game.updateBoard(using: coords, playerTurn: playerTurn)
-		return GameBoardViewModel(
+		return GameViewModel(
 			game: .init(board: board),
 			playerTurn: self.playerTurn)
 	}
 	
-	func swapTurn(current: Player) -> GameBoardViewModel {
-		return GameBoardViewModel(
+	func swapTurn(current: Player) -> GameViewModel {
+		return GameViewModel(
 			game: self.game,
 			playerTurn: current.switchPlayer)
 	}
 }
 
-extension GameBoardViewModel {
+extension GameViewModel {
 	
 	mutating func process(move playerPiece: Game.Piece, coordinates: Coordinates) -> Result {
 		

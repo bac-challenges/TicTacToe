@@ -35,7 +35,7 @@ import XCTest
 class GameBoardModelTests: XCTestCase {
 
     func testResetBoard() {
-        XCTAssert(GameBoardViewModel.reset.game.board == mockGameEmptyBoard.board)
+        XCTAssert(GameViewModel.reset.game.board == mockGameEmptyBoard.board)
     }
     
     func testCanSwapTurn() {
