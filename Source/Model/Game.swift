@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 2D77BA03-54E9-4448-85B2-D4CA318B5897
+//	ID: 9ECA3ED2-C880-427C-9818-BA45A4BFDBAE
 //
 //	Pkg: TicTacToe
 //
@@ -31,40 +31,28 @@
 
 import Foundation
 
-extension GameViewModel {
+struct Game {
 	
-	func checkHorizontalWin(for playerPiece: Game.Piece) -> Bool {
-		for row in game.board {
-			if row.elements(areAll: playerPiece) { return true }
-		}
-		return false
+	enum Piece: String {
+		case empty = "_"
+		case x = "X"
+		case o = "O"
 	}
 	
-	func checkVerticalWin(for playerPiece: Game.Piece) -> Bool {
-		for i in 0..<game.board.count {
-			
-			var match = true
-			for row in game.board {
-				if row[i] == playerPiece { continue }
-				else { match = false; break }
-			}
-			if match { return true }
+	var board: [[Piece]] = [
+		[.empty, .empty, .empty],
+		[.empty, .empty, .empty],
+		[.empty, .empty, .empty]
+	]
+	
+	subscript(coordinates: Coordinates) -> Piece {
+		get {
+			return board[coordinates.row][coordinates.column]
 		}
-		return false
 	}
 	
-	func checkDiagonalWin(for playerPiece: Game.Piece) -> Bool {
-		if playerPiece == game.board[0][0] && playerPiece == game.board[1][1] && playerPiece == game.board[2][2] ||
-			playerPiece == game.board[2][0] && playerPiece == game.board[1][1] && playerPiece == game.board[0][2] {
-			return true
-		}
-		return false
-	}
-	
-	func checkDraw(game: Game) -> Bool {
-		for row in game.board {
-			if row.contains(.empty) { return false }
-		}
-		return true
+	mutating func updateBoard(using coordinates: Coordinates, playerTurn: Player) -> [[Piece]] {
+		board[coordinates.row][coordinates.column] = playerTurn.piece
+		return board
 	}
 }

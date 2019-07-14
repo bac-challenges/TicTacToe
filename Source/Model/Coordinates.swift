@@ -1,6 +1,6 @@
 //	MIT License
 //
-//	Copyright © 2019_DEV_182
+//	Copyright © 2019 Emile, Blue Ant Corp
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 9ECA3ED2-C880-427C-9818-BA45A4BFDBAE
+//	ID: DA8C7EEE-1812-498E-A9D8-A7E6984C9F16
 //
 //	Pkg: TicTacToe
 //
@@ -30,34 +30,3 @@
 //
 
 import Foundation
-
-struct Coordinates {
-	let row: Int
-	let column: Int
-}
-
-struct Game {
-	
-	enum Piece: String {
-		case empty = "_"
-		case x = "X"
-		case o = "O"
-	}
-	
-	var board: [[Piece]] = [
-		[.empty, .empty, .empty],
-		[.empty, .empty, .empty],
-		[.empty, .empty, .empty]
-	]
-	
-	subscript(coordinates: Coordinates) -> Piece {
-		get {
-			return board[coordinates.row][coordinates.column]
-		}
-	}
-	
-	mutating func updateBoard(using coordinates: Coordinates, playerTurn: Player) -> [[Piece]] {
-		board[coordinates.row][coordinates.column] = playerTurn.piece
-		return board
-	}
-}
