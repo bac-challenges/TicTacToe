@@ -22,6 +22,8 @@
 		60DF750C22DB37EC00629CFA /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DF750B22DB37EC00629CFA /* Player.swift */; };
 		60DF750E22DB387800629CFA /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DF750D22DB387800629CFA /* Result.swift */; };
 		60DF751022DB390D00629CFA /* Coordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DF750F22DB390D00629CFA /* Coordinates.swift */; };
+		60DF751222DB450500629CFA /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DF751122DB450500629CFA /* UIView.swift */; };
+		60DF751622DB486A00629CFA /* Square.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DF751522DB486A00629CFA /* Square.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		60DF750B22DB37EC00629CFA /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		60DF750D22DB387800629CFA /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		60DF750F22DB390D00629CFA /* Coordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinates.swift; sourceTree = "<group>"; };
+		60DF751122DB450500629CFA /* UIView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		60DF751522DB486A00629CFA /* Square.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Square.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +151,7 @@
 		60DF750622DB2B8B00629CFA /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				60DF751122DB450500629CFA /* UIView.swift */,
 				60DF74F522DB253300629CFA /* Sequence.swift */,
 			);
 			path = Utils;
@@ -167,6 +172,7 @@
 				60DF750B22DB37EC00629CFA /* Player.swift */,
 				60DF750F22DB390D00629CFA /* Coordinates.swift */,
 				60DF750D22DB387800629CFA /* Result.swift */,
+				60DF751522DB486A00629CFA /* Square.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -273,9 +279,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60DF751222DB450500629CFA /* UIView.swift in Sources */,
 				60DF750E22DB387800629CFA /* Result.swift in Sources */,
 				60DF74DC22DB159D00629CFA /* AppDelegate.swift in Sources */,
 				60DF74F222DB24BA00629CFA /* GameViewModel.swift in Sources */,
+				60DF751622DB486A00629CFA /* Square.swift in Sources */,
 				60DF750A22DB2F6B00629CFA /* GameView.swift in Sources */,
 				60DF74F622DB253300629CFA /* Sequence.swift in Sources */,
 				60DF750C22DB37EC00629CFA /* Player.swift in Sources */,

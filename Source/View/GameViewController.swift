@@ -32,74 +32,33 @@
 import UIKit
 
 class GameViewController: UIViewController {
-	
-	private enum Square: Int {
-		case topLeft = 1
-		case topMiddle = 2
-		case topRight = 3
-		case middleLeft = 4
-		case middle = 5
-		case middleRight = 6
-		case bottomLeft = 7
-		case bottomMiddle = 8
-		case bottomRight = 9
-	}
-	
-	@IBOutlet var whoesTurnLabel: UILabel!
-	
-	@IBOutlet var topLeftButton: UIButton!
-	@IBOutlet var topMiddleButton: UIButton!
-	@IBOutlet var topRightButton: UIButton!
-	@IBOutlet var middleLeftButton: UIButton!
-	@IBOutlet var middleButton: UIButton!
-	@IBOutlet var middleRightButton: UIButton!
-	@IBOutlet var bottomLeftButton: UIButton!
-	@IBOutlet var bottomMiddleButton: UIButton!
-	@IBOutlet var bottomRightButton: UIButton!
-	
+
 	private var model = GameViewModel()
+	
 	var buttons: [UIButton] {
-		return [
-			topLeftButton,
-			topMiddleButton,
-			topRightButton,
-			middleLeftButton,
-			middleButton,
-			middleRightButton,
-			bottomLeftButton,
-			bottomMiddleButton,
-			bottomRightButton
-		]
+		return [UIButton]()
+//		return [
+//			topLeftButton1,
+//			topMiddleButton,
+//			topRightButton,
+//			middleLeftButton,
+//			middleButton,
+//			middleRightButton,
+//			bottomLeftButton,
+//			bottomMiddleButton,
+//			bottomRightButton
+//		]
 	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		whoesTurnLabel.text = "X to go"
+//		whoesTurnLabel.text = "X to go"
+		
 		for button in buttons {
 			button.setTitle("_", for: .normal)
 			button.titleLabel?.font = .boldSystemFont(ofSize: 60)
 		}
-	}
-	
-	@IBAction func squarePressed(sender: UIButton) {
-		guard let square = Square(rawValue: sender.tag) else { fatalError("Square does not exist for button") }
-		
-		var coord: Coordinates
-		switch square {
-		case .topLeft: coord = .init(row: 0, column: 0)
-		case .middleLeft: coord = .init(row: 1, column: 0)
-		case .bottomLeft: coord = .init(row: 2, column: 0)
-		case .topMiddle: coord = .init(row: 0, column: 1)
-		case .middle: coord = .init(row: 1, column: 1)
-		case .bottomMiddle: coord = .init(row: 2, column: 1)
-		case .topRight: coord = .init(row: 0, column: 2)
-		case .middleRight: coord = .init(row: 1, column: 2)
-		case .bottomRight: coord = .init(row: 2, column: 2)
-		}
-		
-		let result = model.process(move: model.playerTurn.piece, coordinates: coord)
-		process(result: result)
 	}
 	
 	private func process(result: Result) {
@@ -120,12 +79,38 @@ class GameViewController: UIViewController {
 	}
 }
 
-// MARK:- End game methods
+// MARK: - Actions
+extension GameViewController {
+
+	@objc func squarePressed(sender: UIButton) {
+		guard let square = Square(rawValue: sender.tag) else {
+			fatalError("Square does not exist for button")
+		}
+		
+		let result = model.process(move: model.playerTurn.piece, coordinates: square.coordinates)
+		
+		process(result: result)
+	}
+}
+
+// MARK: - UI
+extension GameViewController {
+	private func setupView() {
+		setupLayout()
+	}
+	
+	private func setupLayout() {
+	}
+}
+
+// MARK: - End game methods
 extension GameViewController {
 	
 	private func update(using model: GameViewModel) {
 		self.model = model
-		whoesTurnLabel.text = "\(model.playerTurn.piece.rawValue) to go"
+		
+//		whoesTurnLabel.text = "\(model.playerTurn.piece.rawValue) to go"
+		
 		for (index, button) in buttons.enumerated() {
 			let value = model.flattenedBoard[index]
 			button.setTitle(value.rawValue, for: .normal)
@@ -153,5 +138,3 @@ extension GameViewController {
 		present(vc, animated: true, completion: nil)
 	}
 }
-
-

@@ -32,4 +32,26 @@
 import UIKit
 
 class GameView: UIView {
+	
+	// Init
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		setupView()
+	}
+	
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		setupView()
+	}
+}
+
+// MARK: - UI
+extension GameView {
+	private func setupView() {
+		preservesSuperviewLayoutMargins = true
+		setupLayout()
+	}
+	
+	private func setupLayout() {
+	}
 }
