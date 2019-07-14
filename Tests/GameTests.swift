@@ -1,6 +1,6 @@
 //	MIT License
 //
-//	Copyright © 2019 Emile, Blue Ant Corp
+//	Copyright © 2019_DEV_182
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -20,24 +20,23 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: AC2790D1-2438-4235-81E1-8BD139638A35
+//	ID: BD9ADD22-8EC4-438E-BE70-69345D9FB07A
 //
-//	Pkg: TicTackToe
+//	Pkg: TicTacToe
 //
-//	Swift: 5.0 
+//	Swift: 5.0
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+import XCTest
+@testable import TicTacToe
 
-class ViewController: UIViewController {
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		// Do any additional setup after loading the view.
-	}
-
-
+class GameTests: XCTestCase {
+    
+    func testSubscriptWithCoordinates() {
+        let model = mockModelFullBoard()
+        XCTAssert(model.game[.init(row: 0, column: 0)] == .x)
+    }
 }
 

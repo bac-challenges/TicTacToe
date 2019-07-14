@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: AC2790D1-2438-4235-81E1-8BD139638A35
+//	ID: 9ECA3ED2-C880-427C-9818-BA45A4BFDBAE
 //
 //	Pkg: TicTacToe
 //
@@ -29,18 +29,30 @@
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+struct Game {
 	
-	var window: UIWindow?
+	enum Piece: String {
+		case empty = ""
+		case x = "❌"
+		case o = "⭕️"
+	}
 	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = GameViewController()
-		window?.makeKeyAndVisible()
-		return true
+	var board: [[Piece]] = [
+		[.empty, .empty, .empty],
+		[.empty, .empty, .empty],
+		[.empty, .empty, .empty]
+	]
+	
+	subscript(coordinates: Coordinates) -> Piece {
+		get {
+			return board[coordinates.row][coordinates.column]
+		}
+	}
+	
+	mutating func updateBoard(using coordinates: Coordinates, playerTurn: Player) -> [[Piece]] {
+		board[coordinates.row][coordinates.column] = playerTurn.piece
+		return board
 	}
 }
-

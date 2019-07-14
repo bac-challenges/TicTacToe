@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: AC2790D1-2438-4235-81E1-8BD139638A35
+//	ID: A2AB72A8-7901-4610-910D-853EA8228567
 //
 //	Pkg: TicTacToe
 //
@@ -29,18 +29,11 @@
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-	
-	var window: UIWindow?
-	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = GameViewController()
-		window?.makeKeyAndVisible()
-		return true
-	}
+enum Result {
+	case illegalMove
+	case moveMade(GameViewModel)
+	case draw(GameViewModel)
+	case playerWin(GameViewModel)
 }
-
