@@ -33,9 +33,9 @@ import Foundation
 
 struct GameViewModel {
 	var game: Game = Game()
+	
 	var playerTurn = Player.playerOne
 	
-	#warning("Refactor")
 	var board: [[Game.Piece]] {
 		return game.board
 	}
@@ -86,7 +86,6 @@ extension GameViewModel {
 		return .moveMade(updatedModel.swapTurn(current: playerTurn))
 	}
 	
-	#warning("Refactor")
 	func checkLegalMove(coordinates: Coordinates) -> Bool {
 		return self.game[coordinates] == .empty
 	}
@@ -98,7 +97,7 @@ extension GameViewModel {
 	}
 }
 
-// MARK: - Game Logic
+// MARK: - Result Checks
 extension GameViewModel {
 	
 	func checkHorizontalWin(for playerPiece: Game.Piece) -> Bool {

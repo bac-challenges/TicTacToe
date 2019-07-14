@@ -85,11 +85,11 @@ extension GameViewController {
 	}
 }
 
-// MARK:- AlertView
+// MARK: - AlertView
 extension GameViewController {
 	private func showAlertView(title: String, message: String) {
-		let vc = UIAlertController(title: title, message: message, preferredStyle: .alert)
-		vc.addAction(.init(title: "Ok", style: .default, handler: nil))
-		present(vc, animated: true, completion: nil)
+		let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+		alert.addAction(.init(title: "Ok", style: .default, handler: nil))
+		present(alert, animated: true, completion: nil)
 	}
 }
