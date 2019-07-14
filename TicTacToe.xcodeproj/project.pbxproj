@@ -98,7 +98,7 @@
 				60DF74EF22DB244300629CFA /* GameBoard.swift */,
 				60DF74F122DB24BA00629CFA /* GameBoardViewModel.swift */,
 				60DF74F322DB24FC00629CFA /* GameLogic.swift */,
-				60DF74F522DB253300629CFA /* Sequence.swift */,
+				60DF750622DB2B8B00629CFA /* Utils */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -139,6 +139,14 @@
 				60DF74E922DB17A300629CFA /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		60DF750622DB2B8B00629CFA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				60DF74F522DB253300629CFA /* Sequence.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -187,7 +195,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1020;
-				ORGANIZATIONNAME = emile;
+				ORGANIZATIONNAME = 2019_DEV_182;
 				TargetAttributes = {
 					60DF749422DB0A9F00629CFA = {
 						CreatedOnToolsVersion = 10.2.1;
