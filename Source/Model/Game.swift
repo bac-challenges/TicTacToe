@@ -31,11 +31,6 @@
 
 import Foundation
 
-struct Coordinates {
-	let row: Int
-	let column: Int
-}
-
 struct Game {
 	
 	enum Piece: String {

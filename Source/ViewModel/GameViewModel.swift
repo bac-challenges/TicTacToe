@@ -31,32 +31,6 @@
 
 import Foundation
 
-enum Result {
-	case illegalMove
-	case moveMade(GameViewModel)
-	case draw(GameViewModel)
-	case playerWin(GameViewModel)
-}
-
-enum Player: String {
-	case playerOne = "Player One"
-	case playerTwo = "Player Two"
-	
-	fileprivate var switchPlayer: Player {
-		switch self {
-		case .playerOne: return .playerTwo
-		case .playerTwo: return .playerOne
-		}
-	}
-	
-	var piece: Game.Piece {
-		switch self {
-		case .playerOne: return .x
-		case .playerTwo: return .o
-		}
-	}
-}
-
 struct GameViewModel {
 	var game: Game = Game()
 	var playerTurn = Player.playerOne
@@ -83,8 +57,10 @@ struct GameViewModel {
 	}
 }
 
+// MARK: - Process move
 extension GameViewModel {
 	
+	@discardableResult
 	mutating func process(move playerPiece: Game.Piece, coordinates: Coordinates) -> Result {
 		
 		guard checkLegalMove(coordinates: coordinates) else {
@@ -112,5 +88,44 @@ extension GameViewModel {
 		return checkHorizontalWin(for: playerPiece)
 			|| checkVerticalWin(for: playerPiece)
 			|| checkDiagonalWin(for: playerPiece)
+	}
+}
+
+// MARK: - Game Logic
+extension GameViewModel {
+	
+	func checkHorizontalWin(for playerPiece: Game.Piece) -> Bool {
+		for row in game.board {
+			if row.elements(areAll: playerPiece) { return true }
+		}
+		return false
+	}
+	
+	func checkVerticalWin(for playerPiece: Game.Piece) -> Bool {
+		for i in 0..<game.board.count {
+			
+			var match = true
+			for row in game.board {
+				if row[i] == playerPiece { continue }
+				else { match = false; break }
+			}
+			if match { return true }
+		}
+		return false
+	}
+	
+	func checkDiagonalWin(for playerPiece: Game.Piece) -> Bool {
+		if playerPiece == game.board[0][0] && playerPiece == game.board[1][1] && playerPiece == game.board[2][2] ||
+			playerPiece == game.board[2][0] && playerPiece == game.board[1][1] && playerPiece == game.board[0][2] {
+			return true
+		}
+		return false
+	}
+	
+	func checkDraw(game: Game) -> Bool {
+		for row in game.board {
+			if row.contains(.empty) { return false }
+		}
+		return true
 	}
 }

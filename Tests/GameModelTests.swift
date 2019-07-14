@@ -32,7 +32,7 @@
 import XCTest
 @testable import TicTacToe
 
-class GameBoardModelTests: XCTestCase {
+class GameModelTests: XCTestCase {
 
     func testResetBoard() {
         XCTAssert(GameViewModel.reset.game.board == mockGameEmptyBoard.board)
@@ -47,7 +47,7 @@ class GameBoardModelTests: XCTestCase {
 }
 
 // MARK:- Tests for checking row win
-extension GameBoardModelTests {
+extension GameModelTests {
     
     func testWinForXFirstRow() {
         let coords = [Coordinates(row: 0, column: 0),
@@ -95,7 +95,7 @@ extension GameBoardModelTests {
 
 
 // MARK: Tests for checking column win
-extension GameBoardModelTests {
+extension GameModelTests {
     func testWinForFirstColumn() {
         let coords = [Coordinates(row: 0, column: 0),
                       Coordinates(row: 1, column: 0),
@@ -164,7 +164,7 @@ extension GameBoardModelTests {
 
 
 // MARK: Tests for checking the processing of a move
-extension GameBoardModelTests {
+extension GameModelTests {
     
     func testCantMakeIllegalMove() {
         
