@@ -31,7 +31,20 @@
 
 import UIKit
 
+//
+protocol GameViewDelegate {
+	func squarePressed(sender: UIButton)
+}
+
+//
 class GameView: UIView {
+	
+	private lazy var container: UIStackView = {
+		let view = UIStackView()
+		return view
+	}()
+
+	private var buttons = [UIButton]()
 	
 	// Init
 	override init(frame: CGRect) {
@@ -45,13 +58,53 @@ class GameView: UIView {
 	}
 }
 
+// MARK: -
+extension GameView {
+	
+	/// Reset
+	public func reset() {
+		update(GameViewModel.reset)
+	}
+	
+	/// Update
+	public func update(_ model: GameViewModel) {
+//		whoesTurnLabel.text = "\(model.playerTurn.piece.rawValue) to go"
+		
+		for (index, button) in buttons.enumerated() {
+			let value = model.flattenedBoard[index]
+			button.setTitle(value.rawValue, for: .normal)
+		}
+	}
+	
+	private func setButtonTitle() {
+		buttons.forEach { button in
+			button.setTitle("", for: .normal)
+		}
+	}
+}
+
 // MARK: - UI
 extension GameView {
 	private func setupView() {
-		preservesSuperviewLayoutMargins = true
+		addSubview(container)
+		
+		// Title
+//		whoesTurnLabel.text = "X to go"
+		
+		// 
+		for button in buttons {
+			button.setTitle("_", for: .normal)
+			button.titleLabel?.font = .boldSystemFont(ofSize: 60)
+		}
+		
 		setupLayout()
 	}
 	
 	private func setupLayout() {
+		container.anchor(centerX: centerXAnchor, centerY: centerYAnchor)
 	}
+}
+
+class GameRow: UIStackView {
+	
 }

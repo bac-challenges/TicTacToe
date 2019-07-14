@@ -1,6 +1,6 @@
 //	MIT License
 //
-//	Copyright © 2019_DEV_182
+//	Copyright © 2019 Emile, Blue Ant Corp
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -20,33 +20,29 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: AC2790D1-2438-4235-81E1-8BD139638A35
+//	ID: BC53EFBC-7957-4DBE-A40F-3957EF74233F
 //
 //	Pkg: TicTacToe
 //
-//	Swift: 5.0 
+//	Swift: 5.0
 //
 //	MacOS: 10.15
 //
 
 import UIKit
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+struct Appearance {
 	
-	var window: UIWindow?
-	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+	/// Apply appearance properties
+	public static func apply() {
 		
-		// Add view
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = GameViewController()
-		window?.makeKeyAndVisible()
-		
-		// Apply global style
-		Appearance.apply()
-		
-		return true
+		// Global
+		let window = UIWindow.appearance()
+		window.backgroundColor = .lightGray
+
+		// Button
+		let buttonAppearace = UIButton.appearance()
+		buttonAppearace.setTitleColor(.white, for: .normal)
+		buttonAppearace.titleLabel?.font = .systemFont(ofSize: 40, weight: .heavy)
 	}
 }
-

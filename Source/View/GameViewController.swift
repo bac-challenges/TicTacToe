@@ -33,90 +33,44 @@ import UIKit
 
 class GameViewController: UIViewController {
 
-	private var model = GameViewModel()
-	
-	var buttons: [UIButton] {
-		return [UIButton]()
-//		return [
-//			topLeftButton1,
-//			topMiddleButton,
-//			topRightButton,
-//			middleLeftButton,
-//			middleButton,
-//			middleRightButton,
-//			bottomLeftButton,
-//			bottomMiddleButton,
-//			bottomRightButton
-//		]
-	}
-	
+	private lazy var model = GameViewModel()
+	private lazy var gameView = GameView()
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
-//		whoesTurnLabel.text = "X to go"
-		
-		for button in buttons {
-			button.setTitle("_", for: .normal)
-			button.titleLabel?.font = .boldSystemFont(ofSize: 60)
-		}
-	}
-	
-	private func process(result: Result) {
-		switch result {
-			
-		case .illegalMove:
-			showAlertView(title: "Illegal Move", message: "Please select another square")
-			
-		case .moveMade(let model):
-			update(using: model)
-			
-		case .draw(let model):
-			handleEndGame(with: model, message: "Only a draw this time")
-			
-		case .playerWin(let model):
-			handleEndGame(with: model, message: "\(model.playerTurn.rawValue) Wins")
-		}
+		view = gameView
 	}
 }
 
 // MARK: - Actions
-extension GameViewController {
+extension GameViewController: GameViewDelegate {
 
 	@objc func squarePressed(sender: UIButton) {
 		guard let square = Square(rawValue: sender.tag) else {
 			fatalError("Square does not exist for button")
 		}
 		
-		let result = model.process(move: model.playerTurn.piece, coordinates: square.coordinates)
+		#warning("Refactor")
+		let result = model.process(move: model.playerTurn.piece,
+								   coordinates: square.coordinates)
 		
-		process(result: result)
-	}
-}
-
-// MARK: - UI
-extension GameViewController {
-	private func setupView() {
-		setupLayout()
-	}
-	
-	private func setupLayout() {
+		switch result {
+		case .illegalMove: showAlertView(title: "Illegal Move",
+										 message: "Please select another square")
+			
+		case .moveMade(let model): update(using: model)
+			
+		case .draw(let model): handleEndGame(with: model,
+											 message: "It's a draw")
+			
+		case .playerWin(let model): handleEndGame(with: model,
+												  message: "\(model.playerTurn.rawValue) Wins")
+		}
 	}
 }
 
 // MARK: - End game methods
 extension GameViewController {
-	
-	private func update(using model: GameViewModel) {
-		self.model = model
-		
-//		whoesTurnLabel.text = "\(model.playerTurn.piece.rawValue) to go"
-		
-		for (index, button) in buttons.enumerated() {
-			let value = model.flattenedBoard[index]
-			button.setTitle(value.rawValue, for: .normal)
-		}
-	}
-	
 	private func handleEndGame(with model: GameViewModel, message: String) {
 		showAlertView(title: "Game Over", message: message)
 		reset()
@@ -124,9 +78,11 @@ extension GameViewController {
 	
 	private func reset() {
 		update(using: GameViewModel.reset)
-		for button in buttons {
-			button.setTitle("_", for: .normal)
-		}
+	}
+	
+	private func update(using model: GameViewModel) {
+		self.model = model
+		gameView.update(model)
 	}
 }
 

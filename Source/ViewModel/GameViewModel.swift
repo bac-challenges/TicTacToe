@@ -35,6 +35,7 @@ struct GameViewModel {
 	var game: Game = Game()
 	var playerTurn = Player.playerOne
 	
+	#warning("Refactor")
 	var flattenedBoard: [Game.Piece] {
 		return game.board.flatMap { $0 }
 	}
@@ -60,6 +61,7 @@ struct GameViewModel {
 // MARK: - Process move
 extension GameViewModel {
 	
+	#warning("Refactor")
 	@discardableResult
 	mutating func process(move playerPiece: Game.Piece, coordinates: Coordinates) -> Result {
 		
@@ -80,6 +82,7 @@ extension GameViewModel {
 		return .moveMade(updatedModel.swapTurn(current: playerTurn))
 	}
 	
+	#warning("Refactor")
 	func checkLegalMove(coordinates: Coordinates) -> Bool {
 		return self.game[coordinates] == .empty
 	}

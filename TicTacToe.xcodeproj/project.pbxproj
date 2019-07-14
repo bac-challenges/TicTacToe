@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		603EDA2822DB6605001FCD5C /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603EDA2722DB6605001FCD5C /* Appearance.swift */; };
 		60DF74CB22DB0F1500629CFA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 60DF74CA22DB0F1500629CFA /* README.md */; };
 		60DF74DB22DB159D00629CFA /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DF74D022DB159D00629CFA /* GameViewController.swift */; };
 		60DF74DC22DB159D00629CFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DF74D122DB159D00629CFA /* AppDelegate.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		603EDA2722DB6605001FCD5C /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		60DF749522DB0A9F00629CFA /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DF74CA22DB0F1500629CFA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		60DF74D022DB159D00629CFA /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				60DF74D122DB159D00629CFA /* AppDelegate.swift */,
+				603EDA2722DB6605001FCD5C /* Appearance.swift */,
 				60DF74CF22DB159D00629CFA /* View */,
 				60DF750722DB2D5200629CFA /* ViewModel */,
 				60DF750822DB2D6800629CFA /* Model */,
@@ -286,6 +289,7 @@
 				60DF751622DB486A00629CFA /* Square.swift in Sources */,
 				60DF750A22DB2F6B00629CFA /* GameView.swift in Sources */,
 				60DF74F622DB253300629CFA /* Sequence.swift in Sources */,
+				603EDA2822DB6605001FCD5C /* Appearance.swift in Sources */,
 				60DF750C22DB37EC00629CFA /* Player.swift in Sources */,
 				60DF74F022DB244300629CFA /* Game.swift in Sources */,
 				60DF74DB22DB159D00629CFA /* GameViewController.swift in Sources */,
