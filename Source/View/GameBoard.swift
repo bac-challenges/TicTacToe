@@ -33,7 +33,7 @@ import UIKit
 
 //
 protocol GameBoardDelegate: class {
-	func squarePressed(sender: UIButton)
+	func squarePressed(square: UIButton)
 }
 
 class GameBoard: UIStackView {
@@ -71,17 +71,21 @@ extension GameBoard {
 				let rowStack = UIStackView()
 				rowStack.spacing = 5
 				rowStack.axis = .horizontal
+				rowStack.alignment = .fill
+				rowStack.distribution = .fillEqually
 				
 				// Prepare row
 				row.forEach { square in
 					let button = UIButton()
+					button.tag = index
 					button.setTitle("\(index)", for: .normal)
-					button.backgroundColor = .lightGray
-					button.setTitleColor(.groupTableViewBackground, for: .normal)
+					button.setTitleColor(.lightGray, for: .normal)
 					button.titleLabel?.font = .systemFont(ofSize: 80, weight: .heavy)
-					button.layer.borderColor = UIColor.red.cgColor
+					button.backgroundColor = .groupTableViewBackground
+					button.layer.borderColor = UIColor.lightGray.cgColor
 					button.layer.borderWidth = 1
 					button.layer.cornerRadius = 6
+					button.anchor(width: 80, height: 80)
 					button.addTarget(self, action: #selector(squarePressed), for: .touchUpInside)
 					
 					// Add item to row
@@ -99,6 +103,8 @@ extension GameBoard {
 // MARK: - Actions
 extension GameBoard {
 	@objc func squarePressed(sender: UIButton) {
-		print()
+		if let delegate = delegate {
+			delegate.squarePressed(square: sender)
+		}
 	}
 }

@@ -38,7 +38,8 @@ class GameView: UIView {
 		let label = UILabel()
 		label.numberOfLines = 0
 		label.textColor = .darkGray
-		label.font = .systemFont(ofSize: 32, weight: .medium)
+		label.textAlignment = .center
+		label.font = .systemFont(ofSize: 32, weight: .light)
 		return label
 	}()
 	
@@ -88,20 +89,29 @@ extension GameView {
 	}
 }
 
+// MARK: - Actions
+extension GameView: GameBoardDelegate {
+	func squarePressed(square: UIButton) {
+		print(square.tag)
+	}
+}
+
 // MARK: - UI
 extension GameView {
 	private func setupView() {
 		backgroundColor = .white
 		instructionsLabel.text = "X to go"
 		container.elements = Game().board
-//		container.delegate = self
+		container.delegate = self
 		addSubview(instructionsLabel)
 		addSubview(container)
 		setupLayout()
 	}
 	
 	private func setupLayout() {
-		instructionsLabel.anchor(top: topAnchor, paddingTop: 80, centerX: centerXAnchor)
 		container.anchor(centerX: centerXAnchor, centerY: centerYAnchor)
+		instructionsLabel.anchor(bottom: container.topAnchor, paddingBottom: 20,
+								 left: container.leftAnchor,
+								 right: container.rightAnchor)
 	}
 }

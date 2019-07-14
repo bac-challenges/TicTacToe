@@ -45,8 +45,8 @@ class GameViewController: UIViewController {
 // MARK: - Actions
 extension GameViewController: GameBoardDelegate {
 
-	@objc func squarePressed(sender: UIButton) {
-		guard let square = Square(rawValue: sender.tag) else {
+	@objc func squarePressed(square: UIButton) {
+		guard let square = Square(rawValue: square.tag) else {
 			fatalError("Square does not exist for button")
 		}
 		
