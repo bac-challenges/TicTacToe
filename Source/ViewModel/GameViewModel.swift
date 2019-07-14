@@ -67,7 +67,7 @@ extension GameViewModel {
 	
 	#warning("Refactor")
 	@discardableResult
-	mutating func process(move playerPiece: Game.Piece, coordinates: Coordinates) -> Result {
+	mutating func move(to coordinates: Coordinates) -> Result {
 		
 		guard checkLegalMove(coordinates: coordinates) else {
 			return .illegalMove
@@ -75,7 +75,7 @@ extension GameViewModel {
 		
 		let updatedModel = update(with: coordinates)
 		
-		if updatedModel.checkWin(for: playerPiece, coordinates: coordinates) {
+		if updatedModel.checkWin(for: playerTurn.piece, coordinates: coordinates) {
 			return .playerWin(updatedModel)
 		}
 		

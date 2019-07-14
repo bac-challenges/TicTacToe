@@ -52,27 +52,18 @@ class GameViewController: UIViewController {
 
 // MARK: - Actions
 extension GameViewController: GameViewDelegate {
-
 	@objc func squarePressed(square: UIButton) {
 		guard let square = Square(rawValue: square.tag) else {
 			fatalError("Square does not exist for button")
 		}
 		
-		#warning("Refactor")
-		let result = model.process(move: model.playerTurn.piece,
-								   coordinates: square.coordinates)
+		let result = model.move(to: square.coordinates)
 		
 		switch result {
-		case .illegalMove: showAlertView(title: "Illegal Move",
-										 message: "Please select another square")
-			
+		case .illegalMove: showAlertView(title: "Illegal Move", message: "Please select another square")
 		case .moveMade(let model): update(using: model)
-			
-		case .draw(let model): handleEndGame(with: model,
-											 message: "It's a draw")
-			
-		case .playerWin(let model): handleEndGame(with: model,
-												  message: "\(model.playerTurn.rawValue) Wins")
+		case .draw(let model): handleEndGame(with: model, message: "It's a draw")
+		case .playerWin(let model): handleEndGame(with: model, message: "\(model.playerTurn.rawValue) Wins")
 		}
 	}
 }
