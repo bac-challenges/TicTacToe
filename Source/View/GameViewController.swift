@@ -34,7 +34,12 @@ import UIKit
 class GameViewController: UIViewController {
 
 	private lazy var model = GameViewModel()
-	private lazy var gameView = GameView()
+	private lazy var gameView: GameView = {
+		let view = GameView()
+		view.elements = model.board
+		view.delegate = self
+		return view
+	}()
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -43,7 +48,7 @@ class GameViewController: UIViewController {
 }
 
 // MARK: - Actions
-extension GameViewController: GameBoardDelegate {
+extension GameViewController: GameViewDelegate {
 
 	@objc func squarePressed(square: UIButton) {
 		guard let square = Square(rawValue: square.tag) else {

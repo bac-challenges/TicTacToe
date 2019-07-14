@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		603EDA2A22DB8DED001FCD5C /* GameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603EDA2922DB8DED001FCD5C /* GameBoard.swift */; };
 		603EDA2C22DB9654001FCD5C /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603EDA2B22DB9654001FCD5C /* UIStackView.swift */; };
 		60DF74CB22DB0F1500629CFA /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 60DF74CA22DB0F1500629CFA /* README.md */; };
 		60DF74DB22DB159D00629CFA /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DF74D022DB159D00629CFA /* GameViewController.swift */; };
@@ -39,7 +38,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		603EDA2922DB8DED001FCD5C /* GameBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoard.swift; sourceTree = "<group>"; };
 		603EDA2B22DB9654001FCD5C /* UIStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIStackView.swift; sourceTree = "<group>"; };
 		60DF749522DB0A9F00629CFA /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60DF74CA22DB0F1500629CFA /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 			children = (
 				60DF74D022DB159D00629CFA /* GameViewController.swift */,
 				60DF750922DB2F6B00629CFA /* GameView.swift */,
-				603EDA2922DB8DED001FCD5C /* GameBoard.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -288,7 +285,6 @@
 				60DF751222DB450500629CFA /* UIView.swift in Sources */,
 				60DF750E22DB387800629CFA /* Result.swift in Sources */,
 				60DF74DC22DB159D00629CFA /* AppDelegate.swift in Sources */,
-				603EDA2A22DB8DED001FCD5C /* GameBoard.swift in Sources */,
 				60DF74F222DB24BA00629CFA /* GameViewModel.swift in Sources */,
 				60DF751622DB486A00629CFA /* Square.swift in Sources */,
 				60DF750A22DB2F6B00629CFA /* GameView.swift in Sources */,

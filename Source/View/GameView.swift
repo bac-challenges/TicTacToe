@@ -31,9 +31,23 @@
 
 import UIKit
 
-//
+protocol GameViewDelegate: class {
+	func squarePressed(square: UIButton)
+}
+
+// MARK: -
 class GameView: UIView {
 
+	// Delegate
+	public weak var delegate: GameViewDelegate?
+	
+	// Elements map
+	public var elements: [[Game.Piece]]? {
+		didSet {
+			setupView()
+		}
+	}
+	
 	private lazy var instructionsLabel: UILabel = {
 		let label = UILabel()
 		label.numberOfLines = 0
@@ -43,10 +57,9 @@ class GameView: UIView {
 		return label
 	}()
 	
-	private var buttons: [UIButton] {
-		return []
-	}
-	private lazy var container = GameBoard()
+	private lazy var container = UIStackView()
+	
+	private lazy var buttons: [UIButton] = []
 	
 	// Init
 	override init(frame: CGRect) {
@@ -72,17 +85,19 @@ extension GameView {
 	public func update(_ model: GameViewModel) {
 		instructionsLabel.text = "\(model.playerTurn.piece.rawValue) to go"
 		
-//		for (index, button) in buttons.enumerated() {
-//			let value = model.flattenedBoard[index]
-//			button.setTitle(value.rawValue, for: .normal)
-//		}
+		for (index, button) in buttons.enumerated() {
+			let value = model.flatBoard[index]
+			button.setTitle(value.rawValue, for: .normal)
+		}
 	}
 }
 
 // MARK: - Actions
-extension GameView: GameBoardDelegate {
-	func squarePressed(square: UIButton) {
-		print(square.tag)
+extension GameView {
+	@objc func squarePressed(sender: UIButton) {
+		if let delegate = delegate {
+			delegate.squarePressed(square: sender)
+		}
 	}
 }
 
@@ -90,9 +105,60 @@ extension GameView: GameBoardDelegate {
 extension GameView {
 	private func setupView() {
 		backgroundColor = .white
+		
+		// Instructions
 		instructionsLabel.text = "X to go"
-		container.elements = Game().board
-		container.delegate = self
+		
+		// Grid
+		container.spacing = 10
+		container.axis = .vertical
+		
+		// Clear grid
+		buttons.removeAll()
+		container.removeAllArrangedSubviews()
+		
+		// Generate grid
+		if let map = elements {
+			
+			var index = 0
+			
+			// Generate rows
+			map.forEach { row in
+				
+				// Create row
+				let rowStack = UIStackView()
+				rowStack.spacing = 10
+				rowStack.axis = .horizontal
+				rowStack.alignment = .fill
+				rowStack.distribution = .fillEqually
+				
+				// Prepare row
+				row.forEach { square in
+					let button = UIButton()
+					button.tag = index
+					button.setTitle("", for: .normal)
+					button.setTitleColor(.lightGray, for: .normal)
+					button.titleLabel?.font = .systemFont(ofSize: 60, weight: .light)
+					button.backgroundColor = .groupTableViewBackground
+					button.layer.borderColor = UIColor.lightGray.cgColor
+					button.layer.borderWidth = 1
+					button.layer.cornerRadius = 6
+					button.anchor(width: 80, height: 80)
+					button.addTarget(self, action: #selector(squarePressed), for: .touchUpInside)
+					
+					//
+					buttons.append(button)
+					
+					// Add item to row
+					rowStack.addArrangedSubview(button)
+					index += 1
+				}
+				
+				// Add row
+				container.addArrangedSubview(rowStack)
+			}
+		}
+		
 		addSubview(instructionsLabel)
 		addSubview(container)
 		setupLayout()

@@ -34,9 +34,9 @@ import Foundation
 struct Game {
 	
 	enum Piece: String {
-		case empty = "_"
-		case x = "X"
-		case o = "O"
+		case empty = ""
+		case x = "❌"
+		case o = "⭕️"
 	}
 	
 	var board: [[Piece]] = [
