@@ -3,16 +3,18 @@
 TicTacToe implementation in Swift 5.0
 
 ## Developer
-
 - [**2019_DEV_182**](https://www.github.com/)
 
+## Instructions
+Open and run the Xcode project on simulator or device
+
 ## General
-- Swift version 5.0
-- iPhone iOS 12.2
-- XCode 10.2.1
-- macOS 10.15 Beta 3
+- Swift 5.0
+- iOS 12.2
 - Code based UI
 - No external libraries
+- Xcode 10.2.1
+- macOS 10.15 Beta 3
 
 ## Overview
 

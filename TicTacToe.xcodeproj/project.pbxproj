@@ -13,7 +13,6 @@
 		60DF74DD22DB159D00629CFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60DF74D422DB159D00629CFA /* Assets.xcassets */; };
 		60DF74DE22DB159D00629CFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60DF74D522DB159D00629CFA /* LaunchScreen.storyboard */; };
 		60DF74DF22DB159D00629CFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60DF74D722DB159D00629CFA /* Main.storyboard */; };
-		60DF74E022DB159D00629CFA /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60DF74D922DB159D00629CFA /* Info.plist */; };
 		60DF74E822DB17A300629CFA /* TicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DF74E722DB17A300629CFA /* TicTacToeTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -206,7 +205,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				60DF74DF22DB159D00629CFA /* Main.storyboard in Resources */,
-				60DF74E022DB159D00629CFA /* Info.plist in Resources */,
 				60DF74DE22DB159D00629CFA /* LaunchScreen.storyboard in Resources */,
 				60DF74DD22DB159D00629CFA /* Assets.xcassets in Resources */,
 				60DF74CB22DB0F1500629CFA /* README.md in Resources */,
@@ -390,6 +388,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7R2H7J9PW2;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
@@ -397,8 +396,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.blueantcorp.TicTacToe;
+				PRODUCT_BUNDLE_IDENTIFIER = "D2019-DEV-182.TicTacToe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -408,6 +408,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7R2H7J9PW2;
 				INFOPLIST_FILE = "$(SRCROOT)/Resources/Info.plist";
@@ -415,8 +416,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.blueantcorp.TicTacToe;
+				PRODUCT_BUNDLE_IDENTIFIER = "D2019-DEV-182.TicTacToe";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -428,13 +430,13 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7R2H7J9PW2;
-				INFOPLIST_FILE = TicTacToeTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.blueantcorp.TicTacToeTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "D2019-DEV-182.TicTacToeTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,13 +450,13 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 7R2H7J9PW2;
-				INFOPLIST_FILE = TicTacToeTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.blueantcorp.TicTacToeTests;
+				PRODUCT_BUNDLE_IDENTIFIER = "D2019-DEV-182.TicTacToeTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
