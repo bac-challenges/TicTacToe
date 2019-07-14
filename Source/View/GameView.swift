@@ -109,7 +109,7 @@ extension GameView {
 	}
 	
 	private func setupLayout() {
-		container.anchor(centerX: centerXAnchor, centerY: centerYAnchor)
+		container.anchor(centerX: centerXAnchor, centerY: centerYAnchor, paddingCenterY: 30)
 		instructionsLabel.anchor(bottom: container.topAnchor, paddingBottom: 20,
 								 left: container.leftAnchor,
 								 right: container.rightAnchor)

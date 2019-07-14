@@ -51,6 +51,7 @@ class GameBoard: UIStackView {
 
 // MARK: - UI
 extension GameBoard {
+	
 	private func setupView() {
 		
 		// Grid
@@ -67,9 +68,10 @@ extension GameBoard {
 			
 			// Generate rows
 			map.forEach { row in
+				
 				// Create row
 				let rowStack = UIStackView()
-				rowStack.spacing = 5
+				rowStack.spacing = 10
 				rowStack.axis = .horizontal
 				rowStack.alignment = .fill
 				rowStack.distribution = .fillEqually
@@ -78,9 +80,9 @@ extension GameBoard {
 				row.forEach { square in
 					let button = UIButton()
 					button.tag = index
-					button.setTitle("\(index)", for: .normal)
+					button.setTitle("", for: .normal)
 					button.setTitleColor(.lightGray, for: .normal)
-					button.titleLabel?.font = .systemFont(ofSize: 80, weight: .heavy)
+					button.titleLabel?.font = .systemFont(ofSize: 80, weight: .light)
 					button.backgroundColor = .groupTableViewBackground
 					button.layer.borderColor = UIColor.lightGray.cgColor
 					button.layer.borderWidth = 1
