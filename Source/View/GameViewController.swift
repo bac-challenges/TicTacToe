@@ -43,7 +43,7 @@ class GameViewController: UIViewController {
 }
 
 // MARK: - Actions
-extension GameViewController: GameViewDelegate {
+extension GameViewController: GameBoardDelegate {
 
 	@objc func squarePressed(sender: UIButton) {
 		guard let square = Square(rawValue: sender.tag) else {

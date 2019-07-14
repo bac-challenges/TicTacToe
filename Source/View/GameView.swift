@@ -32,19 +32,54 @@
 import UIKit
 
 //
-protocol GameViewDelegate {
-	func squarePressed(sender: UIButton)
-}
-
-//
 class GameView: UIView {
 	
-	private lazy var container: UIStackView = {
-		let view = UIStackView()
-		return view
-	}()
+//	// Top Row
+//	private lazy var topLeftButton = UIButton()
+//	private lazy var topMiddleButton = UIButton()
+//	private lazy var topRightButton = UIButton()
+//	private lazy var topRow = UIStackView(arrangedSubviews: [topLeftButton,
+//															 topMiddleButton,
+//															 topRightButton])
+//
+//	// Middle Row
+//	private lazy var middleLeftButton  = UIButton()
+//	private lazy var middleButton = UIButton()
+//	private lazy var middleRightButton = UIButton()
+//	private lazy var middleRow = UIStackView(arrangedSubviews: [middleLeftButton,
+//																middleButton,
+//																middleRightButton])
+//
+//	// Bottom Row
+//	private lazy var bottomLeftButton = UIButton()
+//	private lazy var bottomMiddleButton = UIButton()
+//	private lazy var bottomRightButton = UIButton()
+//	private lazy var bottomRow = UIStackView(arrangedSubviews: [bottomLeftButton,
+//																bottomMiddleButton,
+//																bottomRightButton])
+	
+	// Game Container
+//	private lazy var container: UIStackView = {
+//		let view = UIStackView(arrangedSubviews: [topRow, middleRow, bottomRow])
+//		view.axis = .vertical
+//		return view
+//	}()
+	
+	private lazy var container = GameBoard()
 
-	private var buttons = [UIButton]()
+	private var buttons: [UIButton] {
+		return [
+//			topLeftButton,
+//			topMiddleButton,
+//			topRightButton,
+//			middleLeftButton,
+//			middleButton,
+//			middleRightButton,
+//			bottomLeftButton,
+//			bottomMiddleButton,
+//			bottomRightButton
+		]
+	}
 	
 	// Init
 	override init(frame: CGRect) {
@@ -103,8 +138,4 @@ extension GameView {
 	private func setupLayout() {
 		container.anchor(centerX: centerXAnchor, centerY: centerYAnchor)
 	}
-}
-
-class GameRow: UIStackView {
-	
 }

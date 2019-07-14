@@ -1,6 +1,6 @@
 //	MIT License
 //
-//	Copyright © 2019 Emile, Blue Ant Corp
+//	Copyright © 2019_DEV_182
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -20,32 +20,25 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: BC53EFBC-7957-4DBE-A40F-3957EF74233F
+//	ID: 1A655C82-1B53-413C-B310-67CC3D8345D1
 //
 //	Pkg: TicTacToe
 //
-//	Swift: 5.0
+//	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
 import UIKit
 
-struct Appearance {
-	
-	/// Apply appearance properties
-	public static func apply() {
-		
-		// Global
-		let window = UIWindow.appearance()
-		window.backgroundColor = .lightGray
-
-		// Button
-		let buttonAppearace = UIButton.appearance()
-		buttonAppearace.setTitleColor(.white, for: .normal)
-		buttonAppearace.titleLabel?.font = .systemFont(ofSize: 40, weight: .heavy)
-		buttonAppearace.layer.borderColor = UIColor.red.cgColor
-		buttonAppearace.layer.borderWidth = 1
-		buttonAppearace.backgroundColor = .darkGray
+public extension UIStackView {
+	/// Removes all arranged subviews.
+	func removeAllArrangedSubviews() {
+		let removedSubviews = arrangedSubviews.reduce([]) { (allSubviews, subview) -> [UIView] in
+			self.removeArrangedSubview(subview)
+			return allSubviews + [subview]
+		}
+		NSLayoutConstraint.deactivate(removedSubviews.flatMap({ $0.constraints }))
+		removedSubviews.forEach({ $0.removeFromSuperview() })
 	}
 }
