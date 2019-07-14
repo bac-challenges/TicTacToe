@@ -33,52 +33,22 @@ import UIKit
 
 //
 class GameView: UIView {
+
+	private lazy var instructionsLabel: UILabel = {
+		let label = UILabel()
+		label.numberOfLines = 0
+		label.textColor = .darkGray
+		label.font = .systemFont(ofSize: 32, weight: .medium)
+		return label
+	}()
 	
-//	// Top Row
-//	private lazy var topLeftButton = UIButton()
-//	private lazy var topMiddleButton = UIButton()
-//	private lazy var topRightButton = UIButton()
-//	private lazy var topRow = UIStackView(arrangedSubviews: [topLeftButton,
-//															 topMiddleButton,
-//															 topRightButton])
-//
-//	// Middle Row
-//	private lazy var middleLeftButton  = UIButton()
-//	private lazy var middleButton = UIButton()
-//	private lazy var middleRightButton = UIButton()
-//	private lazy var middleRow = UIStackView(arrangedSubviews: [middleLeftButton,
-//																middleButton,
-//																middleRightButton])
-//
-//	// Bottom Row
-//	private lazy var bottomLeftButton = UIButton()
-//	private lazy var bottomMiddleButton = UIButton()
-//	private lazy var bottomRightButton = UIButton()
-//	private lazy var bottomRow = UIStackView(arrangedSubviews: [bottomLeftButton,
-//																bottomMiddleButton,
-//																bottomRightButton])
-	
-	// Game Container
-//	private lazy var container: UIStackView = {
-//		let view = UIStackView(arrangedSubviews: [topRow, middleRow, bottomRow])
-//		view.axis = .vertical
-//		return view
-//	}()
-	
-	private lazy var container = GameBoard()
+	private lazy var container: GameBoard = {
+		let container = GameBoard()
+		return container
+	}()
 
 	private var buttons: [UIButton] {
-		return [
-//			topLeftButton,
-//			topMiddleButton,
-//			topRightButton,
-//			middleLeftButton,
-//			middleButton,
-//			middleRightButton,
-//			bottomLeftButton,
-//			bottomMiddleButton,
-//			bottomRightButton
-		]
+		return []
 	}
 	
 	// Init
@@ -103,7 +73,7 @@ extension GameView {
 	
 	/// Update
 	public func update(_ model: GameViewModel) {
-//		whoesTurnLabel.text = "\(model.playerTurn.piece.rawValue) to go"
+		instructionsLabel.text = "\(model.playerTurn.piece.rawValue) to go"
 		
 		for (index, button) in buttons.enumerated() {
 			let value = model.flattenedBoard[index]
@@ -121,21 +91,17 @@ extension GameView {
 // MARK: - UI
 extension GameView {
 	private func setupView() {
+		backgroundColor = .white
+		instructionsLabel.text = "X to go"
+		container.elements = Game().board
+//		container.delegate = self
+		addSubview(instructionsLabel)
 		addSubview(container)
-		
-		// Title
-//		whoesTurnLabel.text = "X to go"
-		
-		// 
-		for button in buttons {
-			button.setTitle("_", for: .normal)
-			button.titleLabel?.font = .boldSystemFont(ofSize: 60)
-		}
-		
 		setupLayout()
 	}
 	
 	private func setupLayout() {
+		instructionsLabel.anchor(top: topAnchor, paddingTop: 80, centerX: centerXAnchor)
 		container.anchor(centerX: centerXAnchor, centerY: centerYAnchor)
 	}
 }

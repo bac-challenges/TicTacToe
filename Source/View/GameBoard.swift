@@ -42,7 +42,7 @@ class GameBoard: UIStackView {
 	public weak var delegate: GameBoardDelegate?
 	
 	// Elements map
-	private var map: [[Game.Piece]]? {
+	public var elements: [[Game.Piece]]? {
 		didSet {
 			setupView()
 		}
@@ -61,35 +61,35 @@ extension GameBoard {
 		removeAllArrangedSubviews()
 		
 		// Generate grid
-		if let map = map {
+		if let map = elements {
 
 			var index = 0
 			
 			// Generate rows
 			map.forEach { row in
-				
+				// Create row
 				let rowStack = UIStackView()
 				rowStack.spacing = 5
 				rowStack.axis = .horizontal
-//				rowStack.alignment = .fill
-//				rowStack.distribution = .fillEqually
 				
 				// Prepare row
 				row.forEach { square in
 					let button = UIButton()
-					button.backgroundColor = .orange
-					button.layer.cornerRadius = 6
 					button.setTitle("\(index)", for: .normal)
-					button.addTarget(self,
-									 action: #selector(squarePressed),
-									 for: .touchUpInside)
+					button.backgroundColor = .lightGray
+					button.setTitleColor(.groupTableViewBackground, for: .normal)
+					button.titleLabel?.font = .systemFont(ofSize: 80, weight: .heavy)
+					button.layer.borderColor = UIColor.red.cgColor
+					button.layer.borderWidth = 1
+					button.layer.cornerRadius = 6
+					button.addTarget(self, action: #selector(squarePressed), for: .touchUpInside)
 					
 					// Add item to row
 					rowStack.addArrangedSubview(button)
 					index += 1
 				}
 				
-				// Add row to grid
+				// Add row
 				addArrangedSubview(rowStack)
 			}
 		}
@@ -99,6 +99,6 @@ extension GameBoard {
 // MARK: - Actions
 extension GameBoard {
 	@objc func squarePressed(sender: UIButton) {
-		
+		print()
 	}
 }
