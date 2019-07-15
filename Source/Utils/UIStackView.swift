@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: AC2790D1-2438-4235-81E1-8BD139638A35
+//	ID: 1A655C82-1B53-413C-B310-67CC3D8345D1
 //
 //	Pkg: TicTacToe
 //
@@ -31,17 +31,14 @@
 
 import UIKit
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-	
-	var window: UIWindow?
-	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = GameViewController()
-		window?.makeKeyAndVisible()
-		window?.tintColor = .darkGray
-		return true
+public extension UIStackView {
+	/// Removes all arranged subviews.
+	func removeAllArrangedSubviews() {
+		let removedSubviews = arrangedSubviews.reduce([]) { (allSubviews, subview) -> [UIView] in
+			self.removeArrangedSubview(subview)
+			return allSubviews + [subview]
+		}
+		NSLayoutConstraint.deactivate(removedSubviews.flatMap({ $0.constraints }))
+		removedSubviews.forEach({ $0.removeFromSuperview() })
 	}
 }
-

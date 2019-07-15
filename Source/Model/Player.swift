@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: AC2790D1-2438-4235-81E1-8BD139638A35
+//	ID: 55CBBC8A-34E4-4B3C-9E5D-E4520902460B
 //
 //	Pkg: TicTacToe
 //
@@ -29,19 +29,23 @@
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+enum Player: String {
+	case playerOne = "❌"
+	case playerTwo = "⭕️"
 	
-	var window: UIWindow?
+	var switchPlayer: Player {
+		switch self {
+		case .playerOne: return .playerTwo
+		case .playerTwo: return .playerOne
+		}
+	}
 	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = GameViewController()
-		window?.makeKeyAndVisible()
-		window?.tintColor = .darkGray
-		return true
+	var piece: Game.Piece {
+		switch self {
+		case .playerOne: return .x
+		case .playerTwo: return .o
+		}
 	}
 }
-

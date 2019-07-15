@@ -20,7 +20,7 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: AC2790D1-2438-4235-81E1-8BD139638A35
+//	ID: BD9ADD22-8EC4-438E-BE70-91275D9FB07A
 //
 //	Pkg: TicTacToe
 //
@@ -29,19 +29,17 @@
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
 
-@UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-	
-	var window: UIWindow?
-	
-	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-		window = UIWindow(frame: UIScreen.main.bounds)
-		window?.rootViewController = GameViewController()
-		window?.makeKeyAndVisible()
-		window?.tintColor = .darkGray
-		return true
+/// Returns a Boolean value indicating whether every element of a sequence
+/// is the same.
+///
+/// - Parameter element: The element that you want to check.
+/// - Returns: `true` if the sequence only contains the element passed in.
+extension Sequence where Element: Equatable {
+	func elements(areAll element: Element) -> Bool {
+		return allSatisfy { e in
+			element == e
+		}
 	}
 }
-

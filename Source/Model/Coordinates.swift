@@ -1,6 +1,6 @@
 //	MIT License
 //
-//	Copyright © 2019 Emile, Blue Ant Corp
+//	Copyright © 2019_DEV_182
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -20,24 +20,18 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: AC2790D1-2438-4235-81E1-8BD139638A35
+//	ID: DA8C7EEE-1812-498E-A9D8-A7E6984C9F16
 //
-//	Pkg: TicTackToe
+//	Pkg: TicTacToe
 //
 //	Swift: 5.0 
 //
 //	MacOS: 10.15
 //
 
-import UIKit
+import Foundation
 
-class ViewController: UIViewController {
-
-	override func viewDidLoad() {
-		super.viewDidLoad()
-		// Do any additional setup after loading the view.
-	}
-
-
+struct Coordinates {
+	let row: Int
+	let column: Int
 }
-

@@ -1,6 +1,6 @@
 //	MIT License
 //
-//	Copyright © 2019 Emile, Blue Ant Corp
+//	Copyright © 2019_DEV_182
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
@@ -20,37 +20,23 @@
 //	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //	SOFTWARE.
 //
-//	ID: 06551D94-B654-47DB-AA11-17F98A967714
+//	ID: BD9ADD22-8EC4-438E-BE70-69345D9FB07A
 //
-//	Pkg: TicTackToeTests
+//	Pkg: TicTacToe
 //
-//	Swift: 5.0 
+//	Swift: 5.0
 //
 //	MacOS: 10.15
 //
 
 import XCTest
+@testable import TicTacToe
 
-class TicTackToeTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+class GameTests: XCTestCase {
+    
+    func testSubscriptWithCoordinates() {
+        let model = mockModelFullBoard()
+        XCTAssert(model.game[.init(row: 0, column: 0)] == .x)
     }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
+
