@@ -44,6 +44,7 @@ class GameViewController: UIViewController {
 		return view
 	}()
 
+	// Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view = gameView
@@ -54,16 +55,16 @@ class GameViewController: UIViewController {
 extension GameViewController: GameViewDelegate {
 	@objc func squarePressed(square: UIButton) {
 		guard let square = Square(rawValue: square.tag) else {
-			fatalError("Square does not exist for button")
+			fatalError("Square not found")
 		}
 		
 		let result = model.process(move: model.playerTurn.piece, coordinates: square.coordinates)
 		
 		switch result {
-		case .illegalMove: showAlertView(title: "Illegal Move", message: "Please select another square")
-		case .moveMade(let model): update(using: model)
-		case .draw(let model): handleEndGame(with: model, message: "It's a draw")
-		case .playerWin(let model): handleEndGame(with: model, message: "\(model.playerTurn.rawValue) Wins")
+		case .moveIlleagal: showAlertView(title: "Illegal Move", message: "Square not empty")
+		case .move(let model): update(using: model)
+		case .gameDraw(let model): handleEndGame(with: model, message: "It's a draw")
+		case .gameWin(let model): handleEndGame(with: model, message: "\(model.playerTurn.rawValue) Wins")
 		}
 	}
 }

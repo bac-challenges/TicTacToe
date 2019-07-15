@@ -46,124 +46,73 @@ class GameModelTests: XCTestCase {
     }
 }
 
-// MARK:- Tests for checking row win
+// MARK: - Test logic for row win
 extension GameModelTests {
-    
-    func testWinForXFirstRow() {
-        let coords = [Coordinates(row: 0, column: 0),
-                      Coordinates(row: 0, column: 1),
-                      Coordinates(row: 0, column: 2)
-        ]
-        
-        let winningX = board(using: mockModelEmptyBoard(), playerMove: .x, coords: coords)
-        XCTAssert(winningX.checkHorizontalWin(for: .x))
-        
-        let winningO = board(using: mockModelEmptyBoard(for: .playerTwo), playerMove: .o, coords: coords)
-        XCTAssert(winningO.checkHorizontalWin(for: .o))
+    func testWinForFirstRow() {
+        testHorizontalWin(coords: mockFirstRowWin)
     }
     
-    func testWinForSecondRow() {
-        func testWinForXFirstHorizontal() {
-            let coords = [Coordinates(row: 1, column: 0),
-                          Coordinates(row: 1, column: 1),
-                          Coordinates(row: 1, column: 2)
-            ]
-            
-            let winningX = board(using: mockModelEmptyBoard(), playerMove: .x, coords: coords)
-            XCTAssert(winningX.checkHorizontalWin(for: .x))
-            
-            let winningO = board(using: mockModelEmptyBoard(for: .playerTwo), playerMove: .o, coords: coords)
-            XCTAssert(winningO.checkHorizontalWin(for: .o))
-        }
-    }
-    
-    func testWinForThirdRow() {
-        func testWinForXFirstHorizontal() {
-            let coords = [Coordinates(row: 2, column: 0),
-                          Coordinates(row: 2, column: 1),
-                          Coordinates(row: 2, column: 2)
-            ]
-            
-            let winningX = board(using: mockModelEmptyBoard(), playerMove: .x, coords: coords)
-            XCTAssert(winningX.checkHorizontalWin(for: .x))
-            
-            let winningO = board(using: mockModelEmptyBoard(for: .playerTwo), playerMove: .o, coords: coords)
-            XCTAssert(winningO.checkHorizontalWin(for: .o))
-        }
-    }
+   func testWinForSecondRow() {
+		testHorizontalWin(coords: mockSecondRowWin)
+	}
+	
+	func testWinForThirdRow() {
+		testHorizontalWin(coords: mockThirdRowWin)
+	}
+	
+	private func testHorizontalWin(coords: [Coordinates]) {
+		let winningX = board(using: mockModelEmptyBoard(), playerMove: .x, coords: coords)
+		XCTAssert(winningX.checkHorizontalWin(for: .x))
+		
+		let winningO = board(using: mockModelEmptyBoard(for: .playerTwo), playerMove: .o, coords: coords)
+		XCTAssert(winningO.checkHorizontalWin(for: .o))
+	}
 }
 
-
-// MARK: Tests for checking column win
+// MARK: - Test logic for column win
 extension GameModelTests {
     func testWinForFirstColumn() {
-        let coords = [Coordinates(row: 0, column: 0),
-                      Coordinates(row: 1, column: 0),
-                      Coordinates(row: 2, column: 0)
-        ]
-        
-        let winningX = board(using: mockModelEmptyBoard(), playerMove: .x, coords: coords)
-        XCTAssert(winningX.checkVerticalWin(for: .x))
-        
-        let winningO = board(using: mockModelEmptyBoard(for: .playerTwo), playerMove: .o, coords: coords)
-        XCTAssert(winningO.checkVerticalWin(for: .o))
+       testVerticalWin(coords: mockFirstColumnWin)
     }
     
     func testWinForSecondColumn() {
-        let coords = [Coordinates(row: 0, column: 1),
-                      Coordinates(row: 1, column: 1),
-                      Coordinates(row: 2, column: 1)
-        ]
-        
-        let winningX = board(using: mockModelEmptyBoard(), playerMove: .x, coords: coords)
-        XCTAssert(winningX.checkVerticalWin(for: .x))
-        
-        let winningO = board(using: mockModelEmptyBoard(for: .playerTwo), playerMove: .o, coords: coords)
-        XCTAssert(winningO.checkVerticalWin(for: .o))
+        testVerticalWin(coords: mockSecondColumnWin)
     }
     
     func testWinForThirdColumn() {
-        let coords = [Coordinates(row: 0, column: 2),
-                      Coordinates(row: 1, column: 2),
-                      Coordinates(row: 2, column: 2)
-        ]
-        
-        let winningX = board(using: mockModelEmptyBoard(), playerMove: .x, coords: coords)
-        XCTAssert(winningX.checkVerticalWin(for: .x))
-        
-        let winningO = board(using: mockModelEmptyBoard(for: .playerTwo), playerMove: .o, coords: coords)
-        XCTAssert(winningO.checkVerticalWin(for: .o))
+		testVerticalWin(coords: mockThirdColumnWin)
     }
-    
-    func testWinForDiagonalTopLeftToBottomRight() {
-        let coords = [Coordinates(row: 0, column: 0),
-                      Coordinates(row: 1, column: 1),
-                      Coordinates(row: 2, column: 2)
-        ]
-        
-        let winningX = board(using: mockModelEmptyBoard(), playerMove: .x, coords: coords)
-        XCTAssert(winningX.checkDiagonalWin(for: .x))
-        
-        let winningO = board(using: mockModelEmptyBoard(for: .playerTwo), playerMove: .o, coords: coords)
-        XCTAssert(winningO.checkDiagonalWin(for: .o))
-    }
-    
-    func testWinForDiagonalBottomLeftToTopRight() {
-        let coords = [Coordinates(row: 2, column: 0),
-                      Coordinates(row: 1, column: 1),
-                      Coordinates(row: 0, column: 2)
-        ]
-        
-        let winningX = board(using: mockModelEmptyBoard(), playerMove: .x, coords: coords)
-        XCTAssert(winningX.checkDiagonalWin(for: .x))
-        
-        let winningO = board(using: mockModelEmptyBoard(for: .playerTwo), playerMove: .o, coords: coords)
-        XCTAssert(winningO.checkDiagonalWin(for: .o))
-    }
+	
+	private func testVerticalWin(coords: [Coordinates]) {
+		let winningX = board(using: mockModelEmptyBoard(), playerMove: .x, coords: coords)
+		XCTAssert(winningX.checkVerticalWin(for: .x))
+		
+		let winningO = board(using: mockModelEmptyBoard(for: .playerTwo), playerMove: .o, coords: coords)
+		XCTAssert(winningO.checkVerticalWin(for: .o))
+	}
+}
+
+// MARK: - Test logic for diagonal win
+extension GameModelTests {
+	func testWinForDiagonalTopLeftToBottomRight() {
+		testDiagonalWin(coords: mockTopLeftToBottomRightWin)
+	}
+	
+	func testWinForDiagonalBottomLeftToTopRight() {
+		testDiagonalWin(coords: mockBottomLeftToTopRightWin)
+	}
+	
+	private func testDiagonalWin(coords: [Coordinates]) {
+		let winningX = board(using: mockModelEmptyBoard(), playerMove: .x, coords: coords)
+		XCTAssert(winningX.checkDiagonalWin(for: .x))
+		
+		let winningO = board(using: mockModelEmptyBoard(for: .playerTwo), playerMove: .o, coords: coords)
+		XCTAssert(winningO.checkDiagonalWin(for: .o))
+	}
 }
 
 
-// MARK: Tests for checking the processing of a move
+// MARK: - Tests for checking the processing of a move
 extension GameModelTests {
     
     func testCantMakeIllegalMove() {
@@ -174,7 +123,7 @@ extension GameModelTests {
         let illegalMove = model.process(move: .x, coordinates: .init(row: 0, column: 0))
         
         switch illegalMove {
-        case .illegalMove: XCTAssert(true)
+        case .moveIlleagal: XCTAssert(true)
         default: XCTFail()
         }
     }
@@ -186,7 +135,7 @@ extension GameModelTests {
         let result = model.process(move: .x, coordinates: .init(row: 2, column: 2))
         
         switch result {
-        case .playerWin(_): XCTAssert(true)
+        case .gameWin(_): XCTAssert(true)
         default: XCTFail()
         }
     }
@@ -198,7 +147,7 @@ extension GameModelTests {
         let result = model.process(move: .o, coordinates: .init(row: 2, column: 2))
         
         switch result {
-        case .draw(_): XCTAssert(true)
+        case .gameDraw(_): XCTAssert(true)
         default: XCTFail()
         }
     }
@@ -210,7 +159,7 @@ extension GameModelTests {
         let result = model.process(move: .x, coordinates: .init(row: 0, column: 0))
         
         switch result {
-        case .moveMade(_): XCTAssert(true)
+        case .move(_): XCTAssert(true)
         default: XCTFail()
         }
     }

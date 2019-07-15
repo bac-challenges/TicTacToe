@@ -32,8 +32,8 @@
 import Foundation
 
 enum Result {
-	case illegalMove
-	case moveMade(GameViewModel)
-	case draw(GameViewModel)
-	case playerWin(GameViewModel)
+	case moveIlleagal
+	case move(GameViewModel)
+	case gameDraw(GameViewModel)
+	case gameWin(GameViewModel)
 }

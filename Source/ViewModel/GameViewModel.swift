@@ -50,15 +50,11 @@ struct GameViewModel {
 	
 	mutating func update(with coords: Coordinates) -> GameViewModel {
 		let board = game.updateBoard(using: coords, playerTurn: playerTurn)
-		return GameViewModel(
-			game: .init(board: board),
-			playerTurn: self.playerTurn)
+		return GameViewModel(game: .init(board: board), playerTurn: self.playerTurn)
 	}
 	
 	func swapTurn(current: Player) -> GameViewModel {
-		return GameViewModel(
-			game: self.game,
-			playerTurn: current.switchPlayer)
+		return GameViewModel(game: self.game, playerTurn: current.switchPlayer)
 	}
 }
 
@@ -69,20 +65,20 @@ extension GameViewModel {
 	mutating func process(move playerPiece: Game.Piece, coordinates: Coordinates) -> Result {
 		
 		guard checkLegalMove(coordinates: coordinates) else {
-			return .illegalMove
+			return .moveIlleagal
 		}
 		
 		let updatedModel = update(with: coordinates)
 		
 		if updatedModel.checkWin(for: playerPiece, coordinates: coordinates) {
-			return .playerWin(updatedModel)
+			return .gameWin(updatedModel)
 		}
 		
 		if checkDraw(game: game) {
-			return .draw(updatedModel)
+			return .gameDraw(updatedModel)
 		}
 		
-		return .moveMade(updatedModel.swapTurn(current: playerTurn))
+		return .move(updatedModel.swapTurn(current: playerTurn))
 	}
 	
 	func checkLegalMove(coordinates: Coordinates) -> Bool {
@@ -121,8 +117,8 @@ extension GameViewModel {
 	
 	func checkDiagonalWin(for playerPiece: Game.Piece) -> Bool {
 		if playerPiece == game.board[0][0] && playerPiece == game.board[1][1] && playerPiece == game.board[2][2] ||
-			playerPiece == game.board[2][0] && playerPiece == game.board[1][1] && playerPiece == game.board[0][2] {
-			return true
+		   playerPiece == game.board[2][0] && playerPiece == game.board[1][1] && playerPiece == game.board[0][2] {
+		   return true
 		}
 		return false
 	}

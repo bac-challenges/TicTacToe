@@ -32,23 +32,75 @@
 import Foundation
 @testable import TicTacToe
 
+// Mocks for horizontal win
+var mockFirstRowWin: [Coordinates] {
+	return [.init(row: 0, column: 0),
+			.init(row: 0, column: 1),
+			.init(row: 0, column: 2)]
+}
+
+var mockSecondRowWin: [Coordinates] {
+	return [.init(row: 1, column: 0),
+			.init(row: 1, column: 1),
+			.init(row: 1, column: 2)]
+}
+
+var mockThirdRowWin: [Coordinates] {
+	return [.init(row: 2, column: 0),
+			.init(row: 2, column: 1),
+			.init(row: 2, column: 2)]
+}
+
+// Mocks for vertical win
+var mockFirstColumnWin: [Coordinates] {
+	return [.init(row: 0, column: 0),
+			.init(row: 1, column: 0),
+			.init(row: 2, column: 0)]
+}
+
+var mockSecondColumnWin: [Coordinates] {
+	return [.init(row: 0, column: 1),
+			.init(row: 1, column: 1),
+			.init(row: 2, column: 1)]
+}
+
+var mockThirdColumnWin: [Coordinates] {
+	return [.init(row: 0, column: 2),
+			.init(row: 1, column: 2),
+			.init(row: 2, column: 2)]
+}
+
+// Mocks for diagonal win
+var mockTopLeftToBottomRightWin: [Coordinates] {
+	return [.init(row: 0, column: 0),
+			.init(row: 1, column: 1),
+			.init(row: 2, column: 2)]
+}
+
+var mockBottomLeftToTopRightWin: [Coordinates] {
+	return [.init(row: 2, column: 0),
+			.init(row: 1, column: 1),
+			.init(row: 0, column: 2)]
+}
+
+// Mocks for board state
 let mockGameEmptyBoard = Game.init(board: [
 	[.empty, .empty, .empty],
 	[.empty, .empty, .empty],
 	[.empty, .empty, .empty]
-])
+	])
 
 let mockGameFullBoard = Game.init(board: [
 	[.x, .o, .x],
 	[.o, .o, .x],
 	[.x, .x, .o]
-])
+	])
 
 let mockGameOneSpaceLeft = Game.init(board: [
 	[.x, .o, .x],
 	[.o, .o, .x],
 	[.x, .x, .empty]
-])
+	])
 
 func mockModelEmptyBoard(for player: Player = .playerOne) -> GameViewModel {
 	return GameViewModel(game: mockGameEmptyBoard, playerTurn: player)
