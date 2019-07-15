@@ -226,7 +226,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 1020;
-				ORGANIZATIONNAME = 2019_DEV_182;
+				ORGANIZATIONNAME = "Blue Ant Corp";
 				TargetAttributes = {
 					60DF749422DB0A9F00629CFA = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -457,7 +457,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "D2019-DEV-182.TicTacToe";
+				PRODUCT_BUNDLE_IDENTIFIER = com.blueantcorp.TicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -477,7 +477,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "D2019-DEV-182.TicTacToe";
+				PRODUCT_BUNDLE_IDENTIFIER = com.blueantcorp.TicTacToe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
