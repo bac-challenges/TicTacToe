@@ -1,6 +1,6 @@
 //	MIT License
 //
-//	Copyright © 2019_DEV_182
+//	Copyright © 2019 Emile, Blue Ant Corp
 //
 //	Permission is hereby granted, free of charge, to any person obtaining a copy
 //	of this software and associated documentation files (the "Software"), to deal
