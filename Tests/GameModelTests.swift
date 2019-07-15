@@ -33,7 +33,6 @@ import XCTest
 @testable import TicTacToe
 
 class GameModelTests: XCTestCase {
-
     func testResetBoard() {
         XCTAssert(GameViewModel.reset.game.board == mockGameEmptyBoard.board)
     }
@@ -46,7 +45,7 @@ class GameModelTests: XCTestCase {
     }
 }
 
-// MARK: - Test logic for row win
+// MARK: - Test logic for horizontal win
 extension GameModelTests {
     func testWinForFirstRow() {
         testHorizontalWin(coords: mockFirstRowWin)
@@ -61,15 +60,24 @@ extension GameModelTests {
 	}
 	
 	private func testHorizontalWin(coords: [Coordinates]) {
-		let winningX = board(using: mockModelEmptyBoard(), playerMove: .x, coords: coords)
+		
+		// Tets player one win
+		let winningX = mockBoard(using: mockModelEmptyBoard(),
+								 playerMove: .x,
+								 coords: coords)
+		
 		XCTAssert(winningX.checkHorizontalWin(for: .x))
 		
-		let winningO = board(using: mockModelEmptyBoard(for: .playerTwo), playerMove: .o, coords: coords)
+		// Tets player two win
+		let winningO = mockBoard(using: mockModelEmptyBoard(for: .playerTwo),
+								 playerMove: .o,
+								 coords: coords)
+		
 		XCTAssert(winningO.checkHorizontalWin(for: .o))
 	}
 }
 
-// MARK: - Test logic for column win
+// MARK: - Test logic for vertical win
 extension GameModelTests {
     func testWinForFirstColumn() {
        testVerticalWin(coords: mockFirstColumnWin)
@@ -84,10 +92,19 @@ extension GameModelTests {
     }
 	
 	private func testVerticalWin(coords: [Coordinates]) {
-		let winningX = board(using: mockModelEmptyBoard(), playerMove: .x, coords: coords)
+		
+		// Tets player one win
+		let winningX = mockBoard(using: mockModelEmptyBoard(),
+								 playerMove: .x,
+								 coords: coords)
+		
 		XCTAssert(winningX.checkVerticalWin(for: .x))
 		
-		let winningO = board(using: mockModelEmptyBoard(for: .playerTwo), playerMove: .o, coords: coords)
+		// Tets player two win
+		let winningO = mockBoard(using: mockModelEmptyBoard(for: .playerTwo),
+								 playerMove: .o,
+								 coords: coords)
+		
 		XCTAssert(winningO.checkVerticalWin(for: .o))
 	}
 }
@@ -103,65 +120,57 @@ extension GameModelTests {
 	}
 	
 	private func testDiagonalWin(coords: [Coordinates]) {
-		let winningX = board(using: mockModelEmptyBoard(), playerMove: .x, coords: coords)
+		
+		// Tets player one win
+		let winningX = mockBoard(using: mockModelEmptyBoard(),
+								 playerMove: .x,
+								 coords: coords)
+		
 		XCTAssert(winningX.checkDiagonalWin(for: .x))
 		
-		let winningO = board(using: mockModelEmptyBoard(for: .playerTwo), playerMove: .o, coords: coords)
+		// Tets player two win
+		let winningO = mockBoard(using: mockModelEmptyBoard(for: .playerTwo),
+								 playerMove: .o,
+								 coords: coords)
+		
 		XCTAssert(winningO.checkDiagonalWin(for: .o))
 	}
 }
 
 
-// MARK: - Tests for checking the processing of a move
+// MARK: - Tests processing of a move
 extension GameModelTests {
-    
-    func testCantMakeIllegalMove() {
-        
-        var model = mockModelEmptyBoard()
-        
-        _ = model.process(move: .x, coordinates: .init(row: 0, column: 0))
-        let illegalMove = model.process(move: .x, coordinates: .init(row: 0, column: 0))
-        
-        switch illegalMove {
-        case .moveIlleagal: XCTAssert(true)
-        default: XCTFail()
-        }
-    }
-    
-    func testProcessMoveReturnsPlayerWinOnWinningMove() {
-        
-        var model = mockModelOneSpaceLeft()
-        
-        let result = model.process(move: .x, coordinates: .init(row: 2, column: 2))
-        
-        switch result {
-        case .gameWin(_): XCTAssert(true)
-        default: XCTFail()
-        }
-    }
-    
-    func testProcessMoveReturnsDrawWhenBoardIsCompleteWithNoWinner() {
-        
-        var model = mockModelOneSpaceLeft(for: .playerTwo)
-        
-        let result = model.process(move: .o, coordinates: .init(row: 2, column: 2))
-        
-        switch result {
-        case .gameDraw(_): XCTAssert(true)
-        default: XCTFail()
-        }
-    }
-    
-    func testProcessMoveReturnsMoveWhenStandardMoveIsMade() {
-        
-        var model = mockModelEmptyBoard()
-        
-        let result = model.process(move: .x, coordinates: .init(row: 0, column: 0))
-        
-        switch result {
-        case .move(_): XCTAssert(true)
-        default: XCTFail()
-        }
-    }
+	func testProcessMakeMove() {
+		var model = mockModelEmptyBoard()
+		switch model.process(move: .x, coordinates: mockCoord) {
+		case .move(_): XCTAssert(true)
+		default: XCTFail()
+		}
+	}
+	
+	func testProcessMakeIllegalMove() {
+		var model = mockModelEmptyBoard()
+		model.process(move: .x, coordinates: mockCoord)
+		switch model.process(move: .x, coordinates: mockCoord) {
+		case .moveIlleagal: XCTAssert(true)
+		default: XCTFail()
+		}
+	}
+	
+	func testProcessMoveReturnsWin() {
+		var model = mockModelOneSpaceLeft()
+		switch model.process(move: .x, coordinates: mockCoord) {
+		case .gameWin(_): XCTAssert(true)
+		default: XCTFail()
+		}
+	}
+	
+	func testProcessMoveReturnsDraw() {
+		var model = mockModelOneSpaceLeft(for: .playerTwo)
+		switch model.process(move: .o, coordinates: mockCoord) {
+		case .gameDraw(_): XCTAssert(true)
+		default: XCTFail()
+		}
+	}
 }
 
