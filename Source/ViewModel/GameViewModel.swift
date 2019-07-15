@@ -104,7 +104,6 @@ extension GameViewModel {
 	
 	func checkVerticalWin(for playerPiece: Game.Piece) -> Bool {
 		for i in 0..<game.board.count {
-			
 			var match = true
 			for row in game.board {
 				if row[i] == playerPiece { continue }
