@@ -47,6 +47,7 @@ class GameView: UIView {
 	}
 	
 	// Private
+	private lazy var container = UIStackView()
 	private lazy var instructionsLabel: UILabel = {
 		let label = UILabel()
 		label.numberOfLines = 0
@@ -56,7 +57,6 @@ class GameView: UIView {
 		return label
 	}()
 	
-	private lazy var container = UIStackView()
 	private lazy var buttons: [UIButton] = []
 	
 	// Init
@@ -81,7 +81,8 @@ extension GameView {
 	
 	/// Update
 	public func update(_ model: GameViewModel) {
-		instructionsLabel.text = "\(model.playerTurn.piece.rawValue) to go"
+		// Instructions
+		instructionsLabel.text = model.playerTurn.piece.rawValue
 		
 		for (index, button) in buttons.enumerated() {
 			let value = model.flatBoard[index]
@@ -96,7 +97,7 @@ extension GameView {
 		backgroundColor = .white
 		
 		// Instructions
-		instructionsLabel.text = "X to go"
+		instructionsLabel.text = Player.playerOne.piece.rawValue
 		
 		// Grid
 		container.spacing = 10
@@ -121,16 +122,13 @@ extension GameView {
 				rowStack.alignment = .fill
 				rowStack.distribution = .fillEqually
 				
-				// Prepare row
+				// Create column
 				row.forEach { square in
 					let button = UIButton()
 					button.tag = index
-					button.setTitle("", for: .normal)
-					button.setTitleColor(.lightGray, for: .normal)
-					button.titleLabel?.font = .systemFont(ofSize: 60, weight: .light)
-					button.backgroundColor = .groupTableViewBackground
 					button.layer.cornerRadius = 6
 					button.anchor(width: 80, height: 80)
+					button.backgroundColor = .groupTableViewBackground
 					button.addTarget(self, action: #selector(squarePressed), for: .touchUpInside)
 					
 					//
@@ -146,8 +144,8 @@ extension GameView {
 			}
 		}
 		
-		addSubview(instructionsLabel)
 		addSubview(container)
+		addSubview(instructionsLabel)
 		setupLayout()
 	}
 	

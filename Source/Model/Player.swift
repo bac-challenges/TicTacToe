@@ -32,8 +32,8 @@
 import Foundation
 
 enum Player: String {
-	case playerOne = "Player One"
-	case playerTwo = "Player Two"
+	case playerOne = "❌"
+	case playerTwo = "⭕️"
 	
 	var switchPlayer: Player {
 		switch self {

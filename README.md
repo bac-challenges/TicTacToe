@@ -9,6 +9,7 @@ TicTacToe implementation in Swift 5.0
 Open and run the Xcode project on simulator or device
 
 ## General
+
 - Swift 5.0
 - iOS 12.2
 - Code based UI
@@ -18,5 +19,21 @@ Open and run the Xcode project on simulator or device
 
 ## Overview
 
-> *This sample code project is based on assignment [TicTacToe](https://github.com/stephane-genicot/katas/blob/master/TicTacToe.md)*
+### View
 
+- GameViewController
+- GameView
+
+### ViewModel
+
+- GameViewModel
+
+### Model
+
+- Square
+- Game
+- Player
+- Coordinates
+- Result
+
+> *This sample code project is based on assignment [TicTacToe](https://github.com/stephane-genicot/katas/blob/master/TicTacToe.md)*

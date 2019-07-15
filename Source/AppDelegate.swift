@@ -40,6 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.rootViewController = GameViewController()
 		window?.makeKeyAndVisible()
+		window?.tintColor = .darkGray
 		return true
 	}
 }

@@ -33,9 +33,9 @@ import Foundation
 
 struct GameViewModel {
 	var game: Game = Game()
+	
 	var playerTurn = Player.playerOne
 	
-	#warning("Refactor")
 	var board: [[Game.Piece]] {
 		return game.board
 	}
@@ -50,43 +50,37 @@ struct GameViewModel {
 	
 	mutating func update(with coords: Coordinates) -> GameViewModel {
 		let board = game.updateBoard(using: coords, playerTurn: playerTurn)
-		return GameViewModel(
-			game: .init(board: board),
-			playerTurn: self.playerTurn)
+		return GameViewModel(game: .init(board: board), playerTurn: self.playerTurn)
 	}
 	
 	func swapTurn(current: Player) -> GameViewModel {
-		return GameViewModel(
-			game: self.game,
-			playerTurn: current.switchPlayer)
+		return GameViewModel(game: self.game, playerTurn: current.switchPlayer)
 	}
 }
 
 // MARK: - Process move
 extension GameViewModel {
 	
-	#warning("Refactor")
 	@discardableResult
 	mutating func process(move playerPiece: Game.Piece, coordinates: Coordinates) -> Result {
 		
 		guard checkLegalMove(coordinates: coordinates) else {
-			return .illegalMove
+			return .moveIlleagal
 		}
 		
 		let updatedModel = update(with: coordinates)
 		
 		if updatedModel.checkWin(for: playerPiece, coordinates: coordinates) {
-			return .playerWin(updatedModel)
+			return .gameWin(updatedModel)
 		}
 		
 		if checkDraw(game: game) {
-			return .draw(updatedModel)
+			return .gameDraw(updatedModel)
 		}
 		
-		return .moveMade(updatedModel.swapTurn(current: playerTurn))
+		return .move(updatedModel.swapTurn(current: playerTurn))
 	}
 	
-	#warning("Refactor")
 	func checkLegalMove(coordinates: Coordinates) -> Bool {
 		return self.game[coordinates] == .empty
 	}
@@ -98,7 +92,7 @@ extension GameViewModel {
 	}
 }
 
-// MARK: - Game Logic
+// MARK: - Result Checks
 extension GameViewModel {
 	
 	func checkHorizontalWin(for playerPiece: Game.Piece) -> Bool {
@@ -110,7 +104,6 @@ extension GameViewModel {
 	
 	func checkVerticalWin(for playerPiece: Game.Piece) -> Bool {
 		for i in 0..<game.board.count {
-			
 			var match = true
 			for row in game.board {
 				if row[i] == playerPiece { continue }
@@ -123,8 +116,8 @@ extension GameViewModel {
 	
 	func checkDiagonalWin(for playerPiece: Game.Piece) -> Bool {
 		if playerPiece == game.board[0][0] && playerPiece == game.board[1][1] && playerPiece == game.board[2][2] ||
-			playerPiece == game.board[2][0] && playerPiece == game.board[1][1] && playerPiece == game.board[0][2] {
-			return true
+		   playerPiece == game.board[2][0] && playerPiece == game.board[1][1] && playerPiece == game.board[0][2] {
+		   return true
 		}
 		return false
 	}

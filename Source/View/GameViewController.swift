@@ -44,6 +44,7 @@ class GameViewController: UIViewController {
 		return view
 	}()
 
+	// Lifecycle
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		view = gameView
@@ -52,27 +53,18 @@ class GameViewController: UIViewController {
 
 // MARK: - Actions
 extension GameViewController: GameViewDelegate {
-
 	@objc func squarePressed(square: UIButton) {
 		guard let square = Square(rawValue: square.tag) else {
-			fatalError("Square does not exist for button")
+			fatalError("Square not found")
 		}
 		
-		#warning("Refactor")
-		let result = model.process(move: model.playerTurn.piece,
-								   coordinates: square.coordinates)
+		let result = model.process(move: model.playerTurn.piece, coordinates: square.coordinates)
 		
 		switch result {
-		case .illegalMove: showAlertView(title: "Illegal Move",
-										 message: "Please select another square")
-			
-		case .moveMade(let model): update(using: model)
-			
-		case .draw(let model): handleEndGame(with: model,
-											 message: "It's a draw")
-			
-		case .playerWin(let model): handleEndGame(with: model,
-												  message: "\(model.playerTurn.rawValue) Wins")
+		case .moveIlleagal: showAlertView(title: "Illegal Move", message: "Square not empty")
+		case .move(let model): update(using: model)
+		case .gameDraw(let model): handleEndGame(with: model, message: "It's a draw")
+		case .gameWin(let model): handleEndGame(with: model, message: "\(model.playerTurn.rawValue) Wins")
 		}
 	}
 }
@@ -94,11 +86,11 @@ extension GameViewController {
 	}
 }
 
-// MARK:- AlertView
+// MARK: - AlertView
 extension GameViewController {
 	private func showAlertView(title: String, message: String) {
-		let vc = UIAlertController(title: title, message: message, preferredStyle: .alert)
-		vc.addAction(.init(title: "Ok", style: .default, handler: nil))
-		present(vc, animated: true, completion: nil)
+		let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+		alert.addAction(.init(title: "Ok", style: .default, handler: nil))
+		present(alert, animated: true, completion: nil)
 	}
 }
