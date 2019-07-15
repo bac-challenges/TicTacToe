@@ -55,11 +55,11 @@ func mockModelEmptyBoard(for player: Player = .playerOne) -> GameViewModel {
 }
 
 func mockModelFullBoard(for player: Player = .playerOne) -> GameViewModel {
-	return GameViewModel(game: mockGameFullBoard, playerTurn: .playerTwo)
+	return GameViewModel(game: mockGameFullBoard, playerTurn: player)
 }
 
 func mockModelOneSpaceLeft(for player: Player = .playerOne) -> GameViewModel {
-	return GameViewModel(game: mockGameOneSpaceLeft, playerTurn: .playerOne)
+	return GameViewModel(game: mockGameOneSpaceLeft, playerTurn: player)
 }
 
 func board(using model: GameViewModel, playerMove: Game.Piece, coords: [Coordinates]) -> GameViewModel {

@@ -57,7 +57,7 @@ extension GameViewController: GameViewDelegate {
 			fatalError("Square does not exist for button")
 		}
 		
-		let result = model.move(to: square.coordinates)
+		let result = model.process(move: model.playerTurn.piece, coordinates: square.coordinates)
 		
 		switch result {
 		case .illegalMove: showAlertView(title: "Illegal Move", message: "Please select another square")
